@@ -12,11 +12,16 @@ import {
     IFCDOOR
 } from 'web-ifc';
 
+function CreateViewer(container) {
+    let viewer = new IfcViewerAPI({ container, backgroundColor: new Color(0xffffff) });
+    viewer.axes.setAxes();
+    viewer.grid.setGrid();
+
+    return viewer;
+}
 
 const container = document.getElementById('viewer-container');
-const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(0xffffff) });
-viewer.axes.setAxes();
-viewer.grid.setGrid();
+let viewer = CreateViewer(container);
 
 const input = document.getElementById("file-input");
 
@@ -42,6 +47,8 @@ input.addEventListener("change",
 );
 
 async function loadIfc(url) {
+    await viewer.dispose();
+    viewer = CreateViewer(container);
     // await viewer.IFC.setWasmPath("static/wasm/");
     const model = await viewer.IFC.loadIfcUrl(url);
     viewer.shadowDropper.renderShadow(model.modelID);
@@ -66,8 +73,12 @@ const inputGltf = document.getElementById('ifc2Gltf');
 inputGltf.onchange = convertToGltf;
 
 async function convertToGltf(event) {
+    await viewer.dispose();
+    viewer = CreateViewer(container);
+
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
+
 
     const result = await viewer.GLTF.exportIfcFileAsGltf({
         ifcFileUrl: url,
@@ -115,4 +126,6 @@ async function convertToGltf(event) {
 
     // Removing the Node created for link
     link.remove();
+
+    loadIfc(url);
 }
