@@ -82,14 +82,14 @@ async function convertToGltf(event) {
 
     const result = await viewer.GLTF.exportIfcFileAsGltf({
         ifcFileUrl: url,
-        splitByFloors: true,
-        categories: {
-            walls: [IFCWALL, IFCWALLSTANDARDCASE],
-            slabs: [IFCSLAB],
-            windows: [IFCWINDOW],
-            curtainwalls: [IFCMEMBER, IFCPLATE, IFCCURTAINWALL],
-            doors: [IFCDOOR]
-        },
+        // splitByFloors: true,
+        // categories: {
+        //     walls: [IFCWALL, IFCWALLSTANDARDCASE],
+        //     slabs: [IFCSLAB],
+        //     windows: [IFCWINDOW],
+        //     curtainwalls: [IFCMEMBER, IFCPLATE, IFCCURTAINWALL],
+        //     doors: [IFCDOOR]
+        // },
         getProperties: true
     });
 
