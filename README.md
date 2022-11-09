@@ -1,3 +1,7 @@
+Working on this converting IFC to gltf files using web-ifc
+reference: https://ifcjs.github.io/info/docs/Guide/web-ifc-viewer/Tutorials/IFC%20to%20gLTF/
+___
+
 # ifcjs-viewer-101
 
 Basic source code for Web-IFC-Viewer
