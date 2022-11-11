@@ -35,14 +35,11 @@ window.ondblclick = async () => {
 viewer.clipper.active = true;
 
 input.addEventListener("change",
-
     async (changed) => {
-
         const file = changed.target.files[0];
         const ifcURL = URL.createObjectURL(file);
         loadIfc(ifcURL);
     },
-
     false
 );
 
